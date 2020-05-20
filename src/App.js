@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
 import './App.css';
 import EventList from './EventList';
-import Event from './Event';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
+import { mockEvents } from './mock-events';
+import { getEvents } from './api';
+
 class App extends Component {
+  state = {
+    events: []
+  }
+
+  updateEvents = (lat, lon) => {
+    getEvents(lat, lon).then(events => this.setState({ events }));
+  }
   render() {
     return (
       <div className="App">
-        <CitySearch />
-        <EventList />
-        <Event />
+        <CitySearch updateEvents={this.updateEvents} />
         <NumberOfEvents />
+        <EventList events={this.state.events} />
+
+
       </div>
     );
   }
