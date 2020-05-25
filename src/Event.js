@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { mockEvents } from './mock-events';
 
 class Event extends Component {
     state = {
@@ -8,7 +7,12 @@ class Event extends Component {
     }
 
     handleShowDetails = () => {
-        this.setState({ showDetails: true })
+        if (this.state.showDetails === false) {
+            this.setState({ showDetails: true });
+        }
+        else {
+            this.setState({ showDetails: false });
+        }
     }
 
     render() {
@@ -22,11 +26,15 @@ class Event extends Component {
                         <div className='eventDate'>Date: {event.local_date}</div>
                         <div className='eventTime'>Time: {event.local_time}</div>
                         <p className="name">{event.name}</p>
-                        <div className="group-name">Group: {event.group}</div>
-                        <div className="going">{event.yes_rsvp_count} are going </div>
+                        <div className="group-name">Group: {event.group.name}</div>
+                        <div className="going"> {event.yes_rsvp_count} are going </div>
 
-
-                        <button className="showDetailsButton details-btn" onClick={this.handleShowDetails}>Show Details</button>
+                        {showDetails &&
+                            <button className="showDetailsButton details-btn" onClick={() => this.handleShowDetails()}>Hide Details</button>
+                        }
+                        {!showDetails &&
+                            <button className="showDetailsButton details-btn" onClick={() => this.handleShowDetails()}>Show Details</button>
+                        }
                         {this.state.showDetails &&
                             <div className="description">
                                 {event.description}

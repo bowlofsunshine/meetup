@@ -37,22 +37,33 @@ async function getSuggestions(query) {
     return [];
 }
 
-async function getEvents(lat, lon) {
+async function getEvents(lat, lon, page) {
     if (window.location.href.startsWith('http://localhost')) {
         return mockEvents.events;
     }
+
     const token = await getAccessToken();
     if (token) {
         let url = 'https://api.meetup.com/find/upcoming_events?&sign=true&photo-host=public'
             + '&access_token=' + token;
-        // lat, lon is optional; if you have a lat and lon, you can add them
+        // lat, lon is optional, if we have lat and lon, then we can add them
         if (lat && lon) {
             url += '&lat=' + lat + '&lon=' + lon;
         }
+        if (page) {
+            url += '&page=' + page;
+        }
         const result = await axios.get(url);
-        return result.data.events;
+        const events = result.data.events;
+        if (events.length) {
+            localStorage.setItem('lastEvents', JSON.stringify(events));
+        }
+
+        return events;
     }
+    return [];
 }
+
 
 async function getOrRenewAccessToken(type, key) {
     let url;
@@ -88,7 +99,7 @@ async function getAccessToken() {
             window.location.href = 'https://secure.meetup.com/oauth2/authorize?client_id=devdka9vqbs3orgak8g9s39jg7&response_type=code&redirect_uri=https://bowlofsunshine.github.io/meetup/';
             return null;
         }
-        return getOrRenewAccessCode('get', code);
+        return getOrRenewAccessToken('get', code);
     }
     const lastSavedTime = localStorage.getItem('last_saved_time');
 
@@ -100,4 +111,6 @@ async function getAccessToken() {
     return getOrRenewAccessToken('renew', refreshToken);
 }
 
-export { getSuggestions, getEvents, getAccessToken };
+
+
+export { getSuggestions, getEvents };
