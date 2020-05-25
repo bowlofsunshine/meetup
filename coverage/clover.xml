@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1589976752955" clover="3.2.0">
+  <project timestamp="1589976752955" name="All files">
+    <metrics statements="39" coveredstatements="26" conditionals="10" coveredconditionals="2" methods="16" coveredmethods="15" elements="65" coveredelements="43" complexity="0" loc="39" ncloc="39" packages="1" files="6" classes="6"/>
+    <file name="App.js" path="/Users/rachel/meetup/meetup/src/App.js">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+      <line num="10" count="4" type="stmt"/>
+      <line num="14" count="4" type="stmt"/>
+      <line num="15" count="1" type="stmt"/>
+      <line num="18" count="7" type="stmt"/>
+    </file>
+    <file name="CitySearch.js" path="/Users/rachel/meetup/meetup/src/CitySearch.js">
+      <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
+      <line num="5" count="4" type="stmt"/>
+      <line num="10" count="4" type="stmt"/>
+      <line num="11" count="2" type="stmt"/>
+      <line num="12" count="2" type="stmt"/>
+      <line num="13" count="2" type="stmt"/>
+      <line num="15" count="4" type="stmt"/>
+      <line num="16" count="2" type="stmt"/>
+      <line num="17" count="2" type="stmt"/>
+      <line num="21" count="13" type="stmt"/>
+      <line num="26" count="6" type="stmt"/>
+    </file>
+    <file name="Event.js" path="/Users/rachel/meetup/meetup/src/Event.js">
+      <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+      <line num="5" count="5" type="stmt"/>
+      <line num="10" count="5" type="stmt"/>
+      <line num="11" count="2" type="stmt"/>
+      <line num="15" count="8" type="stmt"/>
+      <line num="16" count="8" type="stmt"/>
+      <line num="17" count="8" type="stmt"/>
+    </file>
+    <file name="EventList.js" path="/Users/rachel/meetup/meetup/src/EventList.js">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <line num="5" count="3" type="stmt"/>
+      <line num="9" count="5" type="stmt"/>
+      <line num="12" count="8" type="stmt"/>
+    </file>
+    <file name="api.js" path="/Users/rachel/meetup/meetup/src/api.js">
+      <metrics statements="15" coveredstatements="2" conditionals="8" coveredconditionals="0" methods="3" coveredmethods="2"/>
+      <line num="4" count="2" type="stmt"/>
+      <line num="28" count="1" type="stmt"/>
+      <line num="32" count="0" type="stmt"/>
+      <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="34" count="0" type="stmt"/>
+      <line num="35" count="0" type="stmt"/>
+      <line num="37" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="38" count="0" type="stmt"/>
+      <line num="39" count="0" type="stmt"/>
+      <line num="41" count="0" type="stmt"/>
+      <line num="43" count="0" type="stmt"/>
+      <line num="45" count="0" type="cond" truecount="0" falsecount="4"/>
+      <line num="46" count="0" type="stmt"/>
+      <line num="49" count="0" type="stmt"/>
+      <line num="50" count="0" type="stmt"/>
+    </file>
+    <file name="mock-events.js" path="/Users/rachel/meetup/meetup/src/mock-events.js">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <line num="2" count="4" type="stmt"/>
+    </file>
+  </project>
+</coverage>
