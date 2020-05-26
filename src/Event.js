@@ -26,11 +26,11 @@ class Event extends Component {
                         <div className='eventDate'>Date: {event.local_date}</div>
                         <div className='eventTime'>Time: {event.local_time}</div>
                         <p className="name">{event.name}</p>
-                        <div className="group-name">Group: {event.group.name}</div>
+                        <div className="group-name">Group: </div>
                         <div className="going"> {event.yes_rsvp_count} are going </div>
 
                         {showDetails &&
-                            <button className="showDetailsButton details-btn" onClick={() => this.handleShowDetails()}>Hide Details</button>
+                            <button className="hideDetailsButton details-btn" onClick={() => this.handleShowDetails()}>Hide Details</button>
                         }
                         {!showDetails &&
                             <button className="showDetailsButton details-btn" onClick={() => this.handleShowDetails()}>Show Details</button>
