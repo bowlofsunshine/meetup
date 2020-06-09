@@ -6,6 +6,7 @@ import NumberOfEvents from './NumberOfEvents';
 import Event from './Event';
 import { getEvents } from './api';
 import { mockEvents } from './mock-events';
+import { WarningAlert } from './Alert';
 
 class App extends Component {
   state = {
@@ -13,10 +14,12 @@ class App extends Component {
     lat: null,
     lon: null,
     page: null,
+    infoText: ''
   }
 
   componentDidMount() {
     this.updateEvents();
+    this.noEvents();
   }
 
 
@@ -36,12 +39,25 @@ class App extends Component {
     }
   }
 
+  noEvents = () => {
+    if (this.state.events.length === 0) {
+      this.setState({
+        infoText: 'There are no events currently in your city.'
+      });
+    } else {
+      this.setState({
+        infoText: ''
+      })
+    }
+  }
+
   render() {
     return (
       <div className="App">
         <CitySearch updateEvents={this.updateEvents} />
         <NumberOfEvents updateEvents={this.updateEvents} />
         <EventList events={this.state.events} />
+        {this.state.noEvents && <WarningAlert text={this.state.infoText} />}
       </div>
     );
   }
