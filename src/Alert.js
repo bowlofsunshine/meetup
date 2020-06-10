@@ -41,6 +41,7 @@ class WarningAlert extends Alert {
     constructor(props) {
         super(props)
         this.color = 'orange';
+        this.fontSize = '24px';
     }
 }
 
