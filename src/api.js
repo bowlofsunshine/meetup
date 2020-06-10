@@ -42,6 +42,11 @@ async function getEvents(lat, lon, page) {
         return mockEvents.events;
     }
 
+    if (!navigator.onLine) {
+        const events = localStorage.getItem('lastEvents');
+        return JSON.parse(events);
+    }
+
     const token = await getAccessToken();
     if (token) {
         let url = 'https://api.meetup.com/find/upcoming_events?&sign=true&photo-host=public'

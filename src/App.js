@@ -14,16 +14,33 @@ class App extends Component {
     lat: null,
     lon: null,
     page: null,
-    infoText: ''
+    infoText: '',
+    warningText: ''
   }
 
   componentDidMount() {
     this.updateEvents();
-    this.noEvents();
   }
 
 
   updateEvents = (lat, lon, page) => {
+
+    if (!navigator.onLine) {
+      this.setState({ warningText: 'No network connection, events displayed are from previous online session.' });
+    } else {
+      this.setState({ warningText: '' });
+    }
+
+    if (this.state.events.length === 0) {
+      this.setState({
+        infoText: 'There are no events currently in your city.'
+      });
+    } else {
+      this.setState({
+        infoText: ''
+      })
+    }
+
     if (lat && lon) {
       getEvents(lat, lon, this.state.page).then(events =>
         this.setState({ events, lat, lon })
@@ -39,25 +56,15 @@ class App extends Component {
     }
   }
 
-  noEvents = () => {
-    if (this.state.events.length === 0) {
-      this.setState({
-        infoText: 'There are no events currently in your city.'
-      });
-    } else {
-      this.setState({
-        infoText: ''
-      })
-    }
-  }
 
   render() {
     return (
       <div className="App">
         <CitySearch updateEvents={this.updateEvents} />
+        <WarningAlert text={this.state.infoText} />
+        <WarningAlert text={this.state.warningText} />
         <NumberOfEvents updateEvents={this.updateEvents} />
         <EventList events={this.state.events} />
-        {this.state.noEvents && <WarningAlert text={this.state.infoText} />}
       </div>
     );
   }
