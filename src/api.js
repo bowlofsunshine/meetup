@@ -48,6 +48,7 @@ async function getEvents(lat, lon, page) {
     }
 
     const token = await getAccessToken();
+
     if (token) {
         let url = 'https://api.meetup.com/find/upcoming_events?&sign=true&photo-host=public'
             + '&access_token=' + token;
@@ -118,4 +119,4 @@ async function getAccessToken() {
 
 
 
-export { getSuggestions, getEvents };
+export { getSuggestions, getEvents, getAccessToken };

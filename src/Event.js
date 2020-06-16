@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {
+    PieChart, Pie, Cell, Line, Legend, Tooltip, ResponsiveContainer,
+} from 'recharts';
 
 class Event extends Component {
     state = {
@@ -18,6 +21,16 @@ class Event extends Component {
     render() {
         const showDetails = this.state.showDetails;
         const { event } = this.props;
+
+        const pieData = [{
+            name: "RSVP'd",
+            value: event.yes_rsvp_count
+        },
+        {
+            name: "Free Spots",
+            value: (event.rsvp_limit - event.yes_rsvp_count)
+        }];
+        const colors = ["DarkCyan", "CornflowerBlue"];
         return (
             <div className="eventsList">
                 <div className="eventDetails">
@@ -26,8 +39,9 @@ class Event extends Component {
                         <div className='eventDate'>Date: {event.local_date}</div>
                         <div className='eventTime'>Time: {event.local_time}</div>
                         <p className="name">{event.name}</p>
-                        <div className="group-name">Group: </div>
-                        <div className="going"> {event.yes_rsvp_count} are going </div>
+                        <div className="group-name">Group: {event.group.name}</div>
+                        {!event.rsvp_limit &&
+                            <div className="going"> {event.yes_rsvp_count} are going </div>}
 
                         {showDetails &&
                             <button className="hideDetailsButton details-btn" onClick={() => this.handleShowDetails()}>Hide Details</button>
@@ -38,6 +52,22 @@ class Event extends Component {
                         {this.state.showDetails &&
                             <div className="description">
                                 {event.description}
+                                {event.rsvp_limit &&
+
+                                    <PieChart width={400} height={200}>
+                                        <Pie isAnimationActive={false} data={pieData} cx="50%" cy="50%" outerRadius={80} label>
+                                            {
+                                                pieData.map((entry, index) => (
+                                                    <Cell key={`cell-${index}`} fill={colors[index]} />
+                                                ))
+                                            }
+                                        </Pie>
+
+                                        <Tooltip />
+                                        <Legend verticalAlign="bottom" height={24} iconType="triangle" />
+                                    </PieChart>
+
+                                }
                             </div>
                         }
                     </div>
